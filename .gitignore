@@ -31,3 +31,15 @@
 # Debug files
 *.dSYM/
 *.su
+
+*.pbxproj
+
+TextControler.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+
+*.xcuserstate
+
+*.xcscheme
+
+*.xcbkptlist
+
+*.plist
