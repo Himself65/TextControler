@@ -15,12 +15,14 @@
 #include <sys/stat.h>
 #include <sys/unistd.h>
 
+#define SIZE_OF__TXT 4
+#define SIZE_OF__II 2
 #endif /* brd_io_h */
 
 char * brd_gets(char *,int,FILE *);
 
 int brd_puts(char *,FILE *);
 
-int brd_newDocument(char *);
+int brd_newDocument(const char *);
 
-FILE * brd_newTxt(char *,char *);
+FILE * brd_newTxt(const char *,const char *);

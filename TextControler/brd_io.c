@@ -38,7 +38,7 @@ int brd_puts(char * printChar,FILE * file){
 }
 
 
-int brd_newDocument(char * name){
+int brd_newDocument(const char * name){
     if(name != NULL){
         if(access(name, 0) == -1){
             if (mkdir(name, 0777)){
@@ -52,8 +52,7 @@ int brd_newDocument(char * name){
     return EXIT_SUCCESS;
 }
 
-FILE * brd_newTxt(char * pathname,char * textname){
-    //未完成
+FILE * brd_newTxt(const char * pathname,const char * textname){
     FILE *fp;
     int i = 0;
     int sizeOfpathname = 0;
@@ -64,11 +63,18 @@ FILE * brd_newTxt(char * pathname,char * textname){
     while (textname[sizeOfpathname] != '\0') {
         sizeOfpathname++;
     }
-    char * pt;
+    int sumSizeOfname = sizeOftextname +sizeOfpathname + SIZE_OF__II + SIZE_OF__TXT;
+    
+    char localname[sumSizeOfname]; //问题，localname没赋值
+    //pathname的大小 + textname的大小 + “//” + “.txt”
+    localname[0] ='f';
+    printf("%c",localname[0]);
+    printf("hello");
+    //
 //    int sizeOfpathname = sizeof(pathname)/sizeof(char*);
 //    int sizeOftextname = sizeof(textname)/sizeof(char*);
     if (pathname != NULL && textname != NULL) {
-        char localname[sizeOfpathname + 2 + sizeOftextname + 4]; //问题，localname没赋值
+
         if (access(pathname, 0) != -1) {
             for (i = 0; i < sizeOfpathname ; i++) {
                 localname[i] = pathname[i];
@@ -89,7 +95,6 @@ FILE * brd_newTxt(char * pathname,char * textname){
             printf("brd_newTxt failed\n");
             return NULL;
         }
-        pt = localname;
 
         if((fp=fopen(localname,"w")) == NULL)//打开文件 没有就创建
         {
