@@ -106,7 +106,7 @@ FILE * brd_newTxt(const char * pathname,const char * textname){
             printf("创建失败\n");
             
         }
-        fprintf(fp,"创建成功");
+        fprintf(fp,"创建成功");//之后应该加上时间
         fclose(fp);
     }
     return fp;
