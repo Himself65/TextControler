@@ -43,43 +43,41 @@ int brd_puts(char * printChar,FILE * file){
 
 
 int brd_newDocument(const char * name){
+    //如果输入文件夹名字正确则开始创建
     if(name != NULL){
         if(access(name, 0) == -1){
             if (mkdir(name, 0777)){
+                printf("brd_newDocument failed\n"); //若失败返回错误
+                return EXIT_FAILURE;
             }
         }
     }
     else{
-        printf("brd_newDocument failed\n");
+        printf("brd_newDocument failed\n"); //若失败返回错误
         return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;
 }
 
 FILE * brd_newTxt(const char * pathname,const char * textname){
-    
+    FILE *fp;
     
     int sizeOfpathname = 0;
     int sizeOftextname = 0;
+    //计算pathname的大小
     while (pathname[sizeOfpathname] != '\0') {
         sizeOfpathname++;
     }
+    //计算textname的大小
     while (textname[sizeOftextname] != '\0') {
         sizeOftextname++;
     }
+    
+    //计算总共大小
     int sumSizeOfname = sizeOftextname + sizeOfpathname + SIZE_OF__II + SIZE_OF__TXT;
     
+    //初始化txt的名字
     char *localname = (char *) malloc(sizeof(char) * sumSizeOfname);
-//    char localname[sumSizeOfname];
-//    
-    //pathname的大小 + textname的大小 + “//” + “.txt”
-//    localname[0] ='f';
-//    printf("%c",localname[0]);
-//    printf("hello");
-    //
-//    int sizeOfpathname = sizeof(pathname)/sizeof(char*);
-//    int sizeOftextname = sizeof(textname)/sizeof(char*);
-    FILE *fp;
     if (pathname != NULL && textname != NULL) {
         int i = 0;
         if (access(pathname, 0) != -1) {
@@ -87,6 +85,7 @@ FILE * brd_newTxt(const char * pathname,const char * textname){
                 localname[i] = pathname[i];
             }
             
+            //加上 //
             localname[i++] = '/';
             localname[i++] = '/';
             
@@ -96,15 +95,17 @@ FILE * brd_newTxt(const char * pathname,const char * textname){
                 localname[i] = textname[j];
             }
             
-            
+            //加上.txt后缀
             j = 0;
             char ichar[] = (".txt");
             for (; i< sizeOfpathname + sizeOftextname + 6; i++,j++) {
                 localname[i] = ichar[j];
             }
+            //名字结尾，以防bug
             localname[++i] = '\0';
         }
         else{
+            //pathname和txtname错误则输出问题
             printf("brd_newTxt failed\n");
             return NULL;
         }
@@ -114,8 +115,8 @@ FILE * brd_newTxt(const char * pathname,const char * textname){
             printf("创建失败\n");
             
         }
-        fprintf(fp,"创建成功");//之后应该加上时间
-        fclose(fp);
+        fprintf(fp,"创建成功");//成功创建
+        fclose(fp);//关闭文件
     }
     return fp;
 }

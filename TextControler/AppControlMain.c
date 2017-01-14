@@ -10,30 +10,16 @@
 
 int AppControlMain(){
     
-//    brd_puts("enter a word", stdout);
-//    
-//    char aWord[10];
-//    brd_gets(aWord, 10, stdin);
-//    brd_puts(aWord, stdout);
+    char pathname[256],txtname[256];
     
+    brd_puts("enter the pathname", stdout);
+    brd_gets(pathname, 256, stdin);
     
-    char *name = {"helloworld"};
+    brd_puts("enter the txtname", stdout);
+    brd_gets(txtname, 256, stdin);
     
-    brd_newDocument("hello");
-    FILE * file = brd_newTxt("hello", name);
-
-    
-//    int one = 1;
-//    int two = 2;
-//    
-//    int shit = one + two;
-//    char fuck[shit];
-//    for (int i = 0; i < shit; i++) {
-//        fuck[i] = ('u');
-//    }
-//    
-//    printf("%s",fuck);
-//    printf("\n");
+    brd_newDocument(pathname);
+    brd_newTxt(pathname, txtname);
     
     return EXIT_SUCCESS;
 }
