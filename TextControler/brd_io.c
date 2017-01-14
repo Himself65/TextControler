@@ -65,29 +65,34 @@ FILE * brd_newTxt(const char * pathname,const char * textname){
     }
     int sumSizeOfname = sizeOftextname +sizeOfpathname + SIZE_OF__II + SIZE_OF__TXT;
     
-    char localname[sumSizeOfname]; //问题，localname没赋值
+    char *localname = malloc(sumSizeOfname);
     //pathname的大小 + textname的大小 + “//” + “.txt”
-    localname[0] ='f';
-    printf("%c",localname[0]);
-    printf("hello");
+//    localname[0] ='f';
+//    printf("%c",localname[0]);
+//    printf("hello");
     //
 //    int sizeOfpathname = sizeof(pathname)/sizeof(char*);
 //    int sizeOftextname = sizeof(textname)/sizeof(char*);
     if (pathname != NULL && textname != NULL) {
 
         if (access(pathname, 0) != -1) {
-            for (i = 0; i < sizeOfpathname ; i++) {
+            for (i = 0; i < sizeOfpathname + 1 ;i++) {
                 localname[i] = pathname[i];
             }
-            localname[++i] = '/';
-            localname[++i] = '/';
+            //加上 ”//“
+            localname[i++] = '/';
+            localname[i++] = '/';
+            
+            //赋值txt的名字
             int j = 0;
-            for (; i < sizeOftextname + sizeOfpathname; i++) {
-                localname[i] = pathname[j];
+            for (; i < sizeOftextname + sizeOfpathname + 2; i++,j++) {
+                localname[i] = textname[j];
             }
+            
+            
             j = 0;
             char ichar[] = (".txt");
-            for (; i< sizeOfpathname + sizeOftextname + 6; i++) {
+            for (; i< sizeOfpathname + sizeOftextname + 6; i++,j++) {
                 localname[i] = ichar[j];
             }
         }

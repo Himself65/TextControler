@@ -15,9 +15,23 @@ int AppControlMain(){
 //    char aWord[10];
 //    brd_gets(aWord, 10, stdin);
 //    brd_puts(aWord, stdout);
-    brd_newDocument("hello");
-    FILE * file = brd_newTxt("hello", "fuck");//没有完成
     
+    
+    brd_newDocument("hello");
+    FILE * file = brd_newTxt("hello", "fuck");
+
+    
+//    int one = 1;
+//    int two = 2;
+//    
+//    int shit = one + two;
+//    char fuck[shit];
+//    for (int i = 0; i < shit; i++) {
+//        fuck[i] = ('u');
+//    }
+//    
+//    printf("%s",fuck);
+//    printf("\n");
     
     return EXIT_SUCCESS;
 }
