@@ -17,8 +17,10 @@ int AppControlMain(){
 //    brd_puts(aWord, stdout);
     
     
+    char *name = {"helloworld"};
+    
     brd_newDocument("hello");
-    FILE * file = brd_newTxt("hello", "fuck");
+    FILE * file = brd_newTxt("hello", name);
 
     
 //    int one = 1;

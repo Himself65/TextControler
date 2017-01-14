@@ -19,9 +19,13 @@ char * brd_gets(char * inPutChar,int size ,FILE * file){
         saveChar[i] = '\0';
     }
     else{
+        while (getchar() == '\n' ) {
+            continue;
+        }
         printf("输入失败\n");
         return inPutChar = NULL;
     }
+    
     return inPutChar = saveChar;
 }
 
@@ -53,19 +57,21 @@ int brd_newDocument(const char * name){
 }
 
 FILE * brd_newTxt(const char * pathname,const char * textname){
-    FILE *fp;
-    int i = 0;
+    
+    
     int sizeOfpathname = 0;
     int sizeOftextname = 0;
-    while (pathname[sizeOftextname] != '\0') {
-        sizeOftextname++;
-    }
-    while (textname[sizeOfpathname] != '\0') {
+    while (pathname[sizeOfpathname] != '\0') {
         sizeOfpathname++;
     }
-    int sumSizeOfname = sizeOftextname +sizeOfpathname + SIZE_OF__II + SIZE_OF__TXT;
+    while (textname[sizeOftextname] != '\0') {
+        sizeOftextname++;
+    }
+    int sumSizeOfname = sizeOftextname + sizeOfpathname + SIZE_OF__II + SIZE_OF__TXT;
     
-    char *localname = malloc(sumSizeOfname);
+    char *localname = (char *) malloc(sizeof(char) * sumSizeOfname);
+//    char localname[sumSizeOfname];
+//    
     //pathname的大小 + textname的大小 + “//” + “.txt”
 //    localname[0] ='f';
 //    printf("%c",localname[0]);
@@ -73,13 +79,14 @@ FILE * brd_newTxt(const char * pathname,const char * textname){
     //
 //    int sizeOfpathname = sizeof(pathname)/sizeof(char*);
 //    int sizeOftextname = sizeof(textname)/sizeof(char*);
+    FILE *fp;
     if (pathname != NULL && textname != NULL) {
-
+        int i = 0;
         if (access(pathname, 0) != -1) {
-            for (i = 0; i < sizeOfpathname + 1 ;i++) {
+            for (i = 0; i < sizeOfpathname ;i++) {
                 localname[i] = pathname[i];
             }
-            //加上 ”//“
+            
             localname[i++] = '/';
             localname[i++] = '/';
             
@@ -95,12 +102,13 @@ FILE * brd_newTxt(const char * pathname,const char * textname){
             for (; i< sizeOfpathname + sizeOftextname + 6; i++,j++) {
                 localname[i] = ichar[j];
             }
+            localname[++i] = '\0';
         }
         else{
             printf("brd_newTxt failed\n");
             return NULL;
         }
-
+        
         if((fp=fopen(localname,"w")) == NULL)//打开文件 没有就创建
         {
             printf("创建失败\n");
