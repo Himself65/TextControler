@@ -118,5 +118,5 @@ FILE * brd_newTxt(const char * pathname,const char * textname){
         fprintf(fp,"创建成功");//成功创建
         fclose(fp);//关闭文件
     }
-    return fp;
+    return fp;//返回文件
 }
