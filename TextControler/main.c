@@ -8,6 +8,6 @@
 #include "AppControlMain.h"
 
 int main(void){
-    AppControlMain();
+    AppControlMain(void);
     return 0;
 }
