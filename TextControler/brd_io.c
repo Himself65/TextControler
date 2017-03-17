@@ -9,8 +9,10 @@
 #include "brd_io.h"
 
 char * brd_gets(char * inPutChar,int size ,FILE * file){//之后改动，fgets输入+1个，返回原来的
+
     char * saveChar = inPutChar;
     int i = 0;
+
     fgets(saveChar, size, file);
     if(saveChar != NULL){
         while (saveChar[i]!='\n') {
