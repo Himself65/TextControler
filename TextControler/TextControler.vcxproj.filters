@@ -21,9 +21,6 @@
     <ClInclude Include="brd_io.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="unistd.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="brd_io.c">

@@ -138,8 +138,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="brd_io.h" />
-    <ClInclude Include="unistd.h" />
+    <ClInclude Include="brd_io.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="brd_io.c">
