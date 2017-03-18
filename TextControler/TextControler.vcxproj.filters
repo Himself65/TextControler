@@ -18,24 +18,18 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="brd_io.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="unistd.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="TextControler.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="brd_io.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TextControler.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

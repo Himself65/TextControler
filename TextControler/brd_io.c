@@ -1,19 +1,11 @@
-//
-//  brd_io.c
-//  TextControler
-//
-//  Created by Himself65 on 2017/1/12.
-//  Copyright © 2017年 Himself65. All rights reserved.
-//
-
 #include "brd_io.h"
 
-char * brd_gets(char * inPutChar,int size ,FILE * file){//之后改动，fgets输入+1个，返回原来的
-
+char * brdGets(char * inPutChar,const int size ,FILE * Stream){ 
     char * saveChar = inPutChar;
     int i = 0;
 
-    fgets(saveChar, size, file);
+    fgets(saveChar, size, Stream);
+
     if(saveChar != NULL){
         while (saveChar[i]!='\n') {
             i++;
@@ -24,45 +16,41 @@ char * brd_gets(char * inPutChar,int size ,FILE * file){//之后改动，fgets�
         while (getchar() == '\n' ) {
             continue;
         }
-        printf("输入失败\n");
         return inPutChar = NULL;
     }
     
     return inPutChar = saveChar;
 }
 
-int brd_puts(char * printChar,FILE * file){
+int brdPuts(char * printChar,FILE * Stream){
     if (printChar != NULL) {
-        fputs(printChar, file);
-        putc('\n', file);
+        fputs(printChar, Stream);
+        putc('\n', Stream);
         return EXIT_SUCCESS;
-    }
-    else{
-        return EXIT_FAILURE;
     }
     return EOF;
 }
 
 
-int brd_newDocument(const char * name){
+int brdNewDocument(const char * name){
     //如果输入文件夹名字正确则开始创建
     if(name != NULL){
-        if(access(name, 0) == -1){
+        if(access(name, 0) == -1){  //是否可读可写可运行
             if (mkdir(name, 0777)){
-                printf("brd_newDocument failed\n"); //若失败返回错误
+				//若失败返回错误
                 return EXIT_FAILURE;
             }
         }
     }
     else{
-        printf("brd_newDocument failed\n"); //若失败返回错误
+
         return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;
 }
 
-FILE * brd_newTxt(const char * pathname,const char * textname){
-    FILE *fp;
+FILE * brdNewTxt(const char * pathname,const char * textname){
+    FILE *fp; //文件数据
     
     int sizeOfpathname = 0;
     int sizeOftextname = 0;
@@ -76,15 +64,16 @@ FILE * brd_newTxt(const char * pathname,const char * textname){
     }
     
     //计算总共大小
-    int sumSizeOfname = sizeOftextname + sizeOfpathname + SIZE_OF__II + SIZE_OF__TXT;
+    const int sumSizeOfname =- sizeOftextname + sizeOfpathname + SIZE_OF__OBLIQUE_LINE + SIZE_OF__TXT;
     
     //初始化txt的名字
-    char *localname = (char *) malloc(sizeof(char) * sumSizeOfname);
+	char *localname = (char *)malloc(sizeof(char) * sumSizeOfname);
     if (pathname != NULL && textname != NULL) {
         int i = 0;
         if (access(pathname, 0) != -1) {
-            for (i = 0; i < sizeOfpathname ;i++) {
-                localname[i] = pathname[i];
+			for (i = 0; i < sizeOfpathname; i++);
+			{
+				localname[i] = pathname[i];
             }
             
             //加上 //
@@ -117,8 +106,11 @@ FILE * brd_newTxt(const char * pathname,const char * textname){
             printf("创建失败\n");
             
         }
-        fprintf(fp,"创建成功");//成功创建
-        fclose(fp);//关闭文件
+		else{
+			time_t nowTime = time(nowTime);
+			fprintf(fp,"创建成功");//成功创建
+			fclose(fp);//关闭文件
+		}
     }
-    return fp;//返回文件
+    return fp;//返回文件数据
 }
