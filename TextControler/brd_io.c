@@ -36,7 +36,6 @@ int brdPuts(char * printChar,FILE * Stream){
     return EOF;
 }
 
-
 int brdNewDocument(const char * name){
     
     if(name != NULL){ 
@@ -55,7 +54,7 @@ int brdNewDocument(const char * name){
     return EXIT_SUCCESS;
 }
 
-FILE * brdNewTxt(const char * pathname, const char * textname) {
+int brdNewTxt(const char * pathname, const char * textname) {
 	int sizeOfPathName = 0;
 	int sizeOfTextName = 0;
 	if (pathname != NULL) {
@@ -77,7 +76,7 @@ FILE * brdNewTxt(const char * pathname, const char * textname) {
 	}
 	else {
 		perror("failed");
-		return NULL;
+		return EXIT_FAILURE;
 	}
 
 	size_t pathSize = sizeOfPathName + sizeOfTextName + SIZE_OF__TXT + SIZE_OF__OBLIQUE_LINE;
@@ -109,15 +108,30 @@ FILE * brdNewTxt(const char * pathname, const char * textname) {
 	}
 	else {
 		perror("failed");
-		return NULL;
+		return EXIT_FAILURE;
 	}
 	FILE *fp;
 	if ((fp = fopen(pathLocation, "w")) == NULL) {
 		perror("filed new file");
-		return NULL;
+		return EXIT_FAILURE;
 	}
 	else {
 		fprintf(fp, "创建成功");
 	}
 	fclose(fp);//关闭文件
+	return EXIT_SUCCESS;
+}
+
+void wait_time(double seconds)
+{
+	Sleep(seconds);
+	//time_t lastTime,nowTime;
+	//double dif;
+	//ctime(&lastTime);
+	//while (1)
+	//{
+	//	ctime(&nowTime);
+	//	if (difftime(&nowTime, &lastTime) >= seconds)
+	//		return;
+	//}
 }
