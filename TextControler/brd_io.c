@@ -1,3 +1,4 @@
+#pragma once
 #include "brd_io.h"
 
 char * brdGets(char * inPutChar,const int size ,FILE * Stream){ 
@@ -65,7 +66,7 @@ int brdNewTxt(const char * pathname, const char * textname) {
 	}
 	else {
 		perror("failed");
-		return NULL;
+		return EXIT_FAILURE;
 	}
 	if (textname != NULL)
 	{
@@ -84,7 +85,6 @@ int brdNewTxt(const char * pathname, const char * textname) {
 	char *pathLocation = (char*) malloc( sizeof(char) * pathSize );//计算地址大小
 	int pathCount = 0;//总计数
 	int iCount = 0;//计数
-
 	if ( access(pathname, 0) != -1)
 	{
 		for (pathCount = 0; pathCount < sizeOfPathName; pathCount++) {
@@ -122,16 +122,14 @@ int brdNewTxt(const char * pathname, const char * textname) {
 	return EXIT_SUCCESS;
 }
 
-void wait_time(double seconds)
+void wait_time(double seconds)//等待某秒之后在执行下一句
 {
-	Sleep(seconds);
-	//time_t lastTime,nowTime;
-	//double dif;
-	//ctime(&lastTime);
-	//while (1)
-	//{
-	//	ctime(&nowTime);
-	//	if (difftime(&nowTime, &lastTime) >= seconds)
-	//		return;
-	//}
+	time_t thisTime = time(&thisTime);
+	time_t afterTime = time(&afterTime);
+	for (;;)
+	{
+		afterTime = time(NULL);
+		if (difftime(afterTime, thisTime) >= seconds)
+			return;
+	}
 }

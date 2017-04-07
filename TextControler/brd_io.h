@@ -11,12 +11,12 @@
 #define SIZE_OF__OBLIQUE_LINE  2 //两个斜线的长度
 
 
-char * brdGets(char *,int,FILE *);
+char * brdGets(char *, int, FILE *);
 
-int brdPuts(char *,FILE *);
+int brdPuts(char *, FILE *);
 
 int brdNewDocument(const char *);
 
-int brdNewTxt(const char *,const char *);
+int brdNewTxt(const char *, const char *);
 
 void wait_time(double seconds);
