@@ -18,9 +18,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="surfaceUI.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="brd_io.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -30,9 +27,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="TextControler.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="surfaceUI.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

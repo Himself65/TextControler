@@ -139,11 +139,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="brd_io.h" />
-    <ClInclude Include="surfaceUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="brd_io.c" />
-    <ClCompile Include="surfaceUI.c" />
     <ClCompile Include="TextControler.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
